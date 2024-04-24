@@ -7,14 +7,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'main/css/base.css' %}">
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
     {% block links %}{% endblock %}
 </head>
 <body>
-    <header></header>
-    <main>
-        {% block content %}{% endblock %}
-    </main>
-    <footer></footer>
-</body>
+    <div class="wrapper">
+        <header>
+           <div class="header-container">
+                <div class="header-content">
+                    <img class="logo" src="{% static 'main/imgs/logo.png' %}" alt="Logo image">
+                    <nav class="navigation">
+                        <ul class="menu">
+                            <li class="link">
+                                <i class="fa-solid fa-house fa-2xs"></i>
+                                Home
+                            </li>
+                             <li class="link">
+                                <i class="fa-solid fa-list fa-2xs"></i>
+                                Anime
+                            </li>
+                             <li class="link">
+                                <i class="fa-solid fa-chart-simple fa-2xs"></i>
+                                Top-100
+                            </li>
+                             <li class="link">
+                                <i class="fa-solid fa-shuffle fa-2xs"></i>
+                                Random
+                            </li>
+                             <li class="link">
+                                <i class="fa-solid fa-people-group fa-2xs"></i>
+                                Community
+                            </li>
+                            {% if request.user.is_authenticated %}
+                                <li class="link">
+                                    <i class="fa-solid fa-id-badge fa-2xs"></i>
+                                    Profile
+                                </li>
+                            {% else %}
+                                <li class="link">
+                                    <i class="fa-solid fa-right-to-bracket fa-2xs"></i>
+                                    Login/Register
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+           </div>
+        </header>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <footer></footer>
+   </div>
+    <script src="{% static 'main/js/header.js' %}"></script>
     {% block scripts %}{% endblock %}
+</body>
 </html>
