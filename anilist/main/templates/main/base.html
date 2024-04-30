@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'main/imgs/logo.ico' %}">
     <link rel="stylesheet" href="{% static 'main/css/base.css' %}">
     <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
@@ -18,7 +19,7 @@
            <div class="header-container">
                 <div class="header-content">
                     <img class="logo" src="{% static 'main/imgs/logo.png' %}" alt="Logo image">
-                    <nav class="navigation">
+                    <nav class="large">
                         <ul class="menu">
                             <li class="link">
                                 <i class="fa-solid fa-house fa-2xs"></i>
@@ -53,10 +54,55 @@
                             {% endif %}
                         </ul>
                     </nav>
+                    <div class="small">
+                        <button id="open-menu" class="menu-btn">
+                            <i class="fa-solid fa-bars-staggered fa-2xl"></i>
+                        </button>
+                        <nav class="small-nav">
+                             <button id="close-menu" class="menu-btn">
+                                <i class="fa-solid fa-xmark fa-2xl"></i>
+                            </button>
+                            <ul class="menu block">
+                                <li class="link link-p-small">
+                                    <i class="fa-solid fa-house fa-2xs"></i>
+                                    Home
+                                </li>
+                                 <li class="link link-p-small">
+                                    <i class="fa-solid fa-list fa-2xs"></i>
+                                    Anime
+                                </li>
+                                 <li class="link link-p-small">
+                                    <i class="fa-solid fa-chart-simple fa-2xs"></i>
+                                    Top-100
+                                </li>
+                                 <li class="link link-p-small">
+                                    <i class="fa-solid fa-shuffle fa-2xs"></i>
+                                    Random
+                                </li>
+                                 <li class="link link-p-small">
+                                    <i class="fa-solid fa-people-group fa-2xs"></i>
+                                    Community
+                                </li>
+                                <hr>
+                                {% if request.user.is_authenticated %}
+                                    <li class="link link-p-small">
+                                        <i class="fa-solid fa-id-badge fa-2xs"></i>
+                                        Profile
+                                    </li>
+                                {% else %}
+                                    <li class="link link-p-small">
+                                        <i class="fa-solid fa-right-to-bracket fa-2xs"></i>
+                                        Login/Register
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
            </div>
         </header>
         <main>
+            <div class="bg"></div>
             {% block content %}{% endblock %}
         </main>
         <footer></footer>
