@@ -22,8 +22,7 @@
                     <nav class="large">
                         <ul class="menu">
                             <li class="link">
-                                <i class="fa-solid fa-house fa-2xs"></i>
-                                Home
+                                <a href="{% url 'index' %}"><i class="fa-solid fa-house fa-2xs"></i>Home</a>
                             </li>
                              <li class="link">
                                 <i class="fa-solid fa-list fa-2xs"></i>
@@ -48,8 +47,7 @@
                                 </li>
                             {% else %}
                                 <li class="link">
-                                    <i class="fa-solid fa-right-to-bracket fa-2xs"></i>
-                                    Login/Register
+                                    <a href="{% url 'signup' %}"><i class="fa-solid fa-right-to-bracket fa-2xs"></i>Login/Register</a>
                                 </li>
                             {% endif %}
                         </ul>
@@ -64,8 +62,7 @@
                             </button>
                             <ul class="menu block">
                                 <li class="link link-p-small">
-                                    <i class="fa-solid fa-house fa-2xs"></i>
-                                    Home
+                                    <a href="{% url 'index' %}"><i class="fa-solid fa-house fa-2xs"></i>Home</a>
                                 </li>
                                  <li class="link link-p-small">
                                     <i class="fa-solid fa-list fa-2xs"></i>
@@ -91,8 +88,7 @@
                                     </li>
                                 {% else %}
                                     <li class="link link-p-small">
-                                        <i class="fa-solid fa-right-to-bracket fa-2xs"></i>
-                                        Login/Register
+                                        <a href="{% url 'signup' %}"><i class="fa-solid fa-right-to-bracket fa-2xs"></i>Login/Register</a>
                                     </li>
                                 {% endif %}
                             </ul>
@@ -140,7 +136,10 @@
                         <h3>Technical support</h3>
                         <ul class="footer-menu">
                             <li class="footer-link"><a href="">Chat with support</a></li>
-                            <li class="footer-link">Mail for support: <a href="" style="color: var(--light-red)">mail@mail.com</a></li>
+                            <li class="footer-link">
+                                Mail for support:
+                                <a href="mailto:mail@mail.com" style="color: var(--light-red)">mail@mail.com</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

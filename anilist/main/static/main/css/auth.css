@@ -1,0 +1,90 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.form-container h2 {
+    margin-bottom: 0;
+}
+
+.form-container hr{
+    width: 90%;
+}
+
+form {
+    width: 80%;
+    background: var(--light-dark);
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.form-block {
+    margin-bottom: 20px;
+}
+
+.form-block input,
+.form-block label {
+    display: block;
+}
+
+.form-block label {
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid var(--dark-grey);
+    padding: 12px 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background: var(--dark);
+    color: var(--light);
+}
+
+.form-control:focus {
+    outline: thin solid var(--light-red);
+    border-radius: 5px;
+}
+
+.form-errors {
+    color: orangered;
+}
+
+.submit-btn {
+    width: 100%;
+    background: transparent;
+    border: thin solid var(--light-green);
+    border-radius: 5px;
+    padding: 10px 0;
+    color: var(--light-green);
+    transition: .2s ease-in;
+}
+
+.submit-btn:hover {
+    cursor: pointer;
+    background: var(--light-green);
+    color: white;
+}
+
+.auth-img {
+    background-image: url('/static/main/imgs/auth.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+@media screen and (max-width: 886px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}

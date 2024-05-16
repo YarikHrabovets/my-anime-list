@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'main/css/auth.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="grid-container">
+        <div class="form-container">
+            <h2>Log In</h2>
+            <hr>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-errors">{{ form.non_field_errors }}</div>
+                {% for field in form %}
+                    <div class="form-block">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                    <div class="form-errors">{{ field.errors }}</div>
+                {% endfor %}
+                <button type="submit" class="submit-btn ">Log In</button>
+            </form>
+            <p>Haven't got an account yet? <a href="{% url 'signup' %}">Sign Up here!</a></p>
+        </div>
+        <div class="auth-img"></div>
+    </div>
+{% endblock %}
