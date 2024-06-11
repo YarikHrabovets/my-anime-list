@@ -2,8 +2,9 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.views import AuthenticationForm
 from django import forms
 from captcha.fields import CaptchaField, CaptchaTextInput
+from django_countries.widgets import CountrySelectWidget
 
-from .models import AnilistUser
+from .models import AnilistUser, Profile
 
 
 class AnilistUserCreationForm(UserCreationForm):
@@ -50,3 +51,22 @@ class AnilistUserAuthenticationForm(AuthenticationForm):
 
 class AnilistUserChangeForm(UserChangeForm):
     pass
+
+
+class ProfileChangeForm(forms.ModelForm):
+    GENDER_CHOICES = [
+        ('NONE', 'none'),
+        ('MALE', 'male'),
+        ('FEMALE', 'female')
+    ]
+    gender = forms.ChoiceField(widget=forms.RadioSelect(attrs={'class': 'form-control'}), choices=GENDER_CHOICES)
+
+    class Meta:
+        model = Profile
+        fields = ('profile_pic', 'bio', 'gender', 'country')
+        widgets = {
+            'profile_pic': forms.FileInput(attrs={'class': 'form-control'}),
+            'bio': forms.Textarea(attrs={'class': 'form-control'}),
+            'country': CountrySelectWidget()
+        }
+

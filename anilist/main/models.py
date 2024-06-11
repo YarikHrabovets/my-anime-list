@@ -41,8 +41,8 @@ class Profile(models.Model):
     profile_pic = models.ImageField('Profile picture', null=True, blank=True, upload_to='profile_pics')
     bio = models.TextField('Biography', default='No bio data', max_length=400)
     gender = models.CharField('Gender', max_length=6, choices=GENDER_CHOICES, default='NONE')
-    country = CountryField()
-    friends = models.ManyToManyField(AnilistUser, blank=True, related_name='friends')
+    country = CountryField(blank_label='(select country)')
+    friends = models.ManyToManyField('self')
     slug = models.SlugField('URL', unique=True, max_length=255)
 
     class Meta:
@@ -54,7 +54,7 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         if self.pk:
-            old_instance = AnilistUser.objects.get(pk=self.pk)
+            old_instance = Profile.objects.get(pk=self.pk)
 
             if old_instance.profile_pic != self.profile_pic:
                 if old_instance.profile_pic and os.path.isfile(old_instance.profile_pic.path):

@@ -6,7 +6,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import CreateView, DetailView, UpdateView
 from django.urls import reverse_lazy
 
-from .forms import AnilistUserCreationForm, AnilistUserAuthenticationForm, AnilistUserChangeForm
+from .forms import AnilistUserCreationForm, AnilistUserAuthenticationForm, AnilistUserChangeForm, ProfileChangeForm
 from .models import AnilistUser, Profile
 
 
@@ -25,8 +25,7 @@ class RegisterUserView(CreateView):
         return super().form_valid(user)
 
     def get_success_url(self):
-        profile = Profile.objects.get(pk=self.request.user.pk)
-        return reverse_lazy('profile', kwargs={'profile_slug': profile.slug})
+        return reverse_lazy('personal_profile')
 
 
 class AuthoriseUserView(LoginView):
@@ -34,18 +33,19 @@ class AuthoriseUserView(LoginView):
     template_name = 'main/login.html'
 
     def get_success_url(self):
-        profile = Profile.objects.get(pk=self.request.user.pk)
-        return reverse_lazy('profile', kwargs={'profile_slug': profile.slug})
+        return reverse_lazy('personal_profile')
 
 
-class PersonalProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    model = Profile
-    form_class = AnilistUserChangeForm
+class PersonalProfileView(LoginRequiredMixin, DetailView):
     template_name = 'main/my_profile.html'
-    success_message = 'Profile was updated successfully'
+    context_object_name = 'profile'
+
+    def get_object(self, queryset=None):
+        profile = Profile.objects.get(pk=self.request.user.pk)
+        return profile
 
 
-class ProfileView:
+class ProfileView(DetailView):
     pass
 
 
