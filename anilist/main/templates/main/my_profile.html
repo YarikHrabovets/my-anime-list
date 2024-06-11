@@ -1,0 +1,86 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+    Profile of {{ profile.user.username }}
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'main/css/my_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<!--    <p>{{ profile.user.username }}</p>-->
+<!--    <p>{{ profile.user.email }}</p>-->
+<!--    <p>{{ profile.bio }}</p>-->
+<!--    <p>{{ profile.gender }}</p>-->
+<!--    <p>{{ profile.country.name }} <img src="{{ profile.country.flag }}"/></p>-->
+
+    <div class="grid-container">
+        <div class="profile">
+            <img class="profile-bg" src="{% static 'main/imgs/banner_1.jpg' %}">
+            <div class="profile-main">
+                {% if profile.profile_pic %}
+                    <img class="avatar-img" src="{{ profile.profile_pic.url }}" alt="Avatar">
+                {% else %}
+                    <img class="avatar-img" src="{% static 'main/imgs/default-profile.jpg' %}" alt="Avatar">
+                {% endif %}
+                <div class="info">
+                    <div>
+                        <p><strong>Email:</strong> {{ profile.user.email }}</p>
+                        <p><strong>Username:</strong> {{ profile.user.username }}</p>
+                    </div>
+                    <div>
+                        <p><strong>Country:</strong> {{ profile.country.name }} <img src="{{ profile.country.flag }}"/></p>
+                        <p><strong>Gender:</strong> {{ profile.gender }}</p>
+                    </div>
+                    <div>
+                        <p><strong>On site since:</strong> {{ profile.user.date_joined|date:'M d, Y' }}</p>
+                        <p><strong>Bio:</strong> {{ profile.bio }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="profile-menu">
+                <div class="heading">
+                    <h4>Menu</h4>
+                </div>
+                <ul class="options">
+                    <li class="option">
+                        <a href="#">
+                            <i class="fa-solid fa-comments"></i> Messages
+                        </a>
+                    </li>
+                    <li class="option">
+                        <a href="#">
+                            <i class="fa-solid fa-list"></i> Anime list
+                        </a>
+                    </li>
+                    <li class="option">
+                        <a href="#">
+                            <i class="fa-solid fa-gears"></i> Settings
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="friends">
+                <div class="heading">
+                    <h4>Friends</h4>
+                </div>
+                <ul class="options">
+                    {% for friend in profile.friends.all %}
+                        <li class="option">
+                            {% if profile.profile_pic %}
+                                <img class="friend-avatar-img" src="{{ friend.profile_pic.url }}" alt="Friend avatar">
+                            {% else %}
+                                <img class="friend-avatar-img" src="{% static 'main/imgs/default-profile.jpg' %}" alt="Friend avatar">
+                            {% endif %}
+                            <a class="friend-link" href="{{ friend.get_absolute_url }}">{{ friend.user.username }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

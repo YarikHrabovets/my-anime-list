@@ -22,34 +22,27 @@
                     <nav class="large">
                         <ul class="menu">
                             <li class="link">
-                                <i class="fa-solid fa-house fa-2xs"></i>
-                                Home
+                                <a href="{% url 'index' %}"><i class="fa-solid fa-house fa-xs"></i> Home</a>
                             </li>
                              <li class="link">
-                                <i class="fa-solid fa-list fa-2xs"></i>
-                                Anime
+                                <a href="#"><i class="fa-solid fa-list fa-xs"></i> Anime</a>
                             </li>
                              <li class="link">
-                                <i class="fa-solid fa-chart-simple fa-2xs"></i>
-                                Top-100
+                               <a href="#"><i class="fa-solid fa-chart-simple fa-xs"></i> Top-100</a>
                             </li>
                              <li class="link">
-                                <i class="fa-solid fa-shuffle fa-2xs"></i>
-                                Random
+                                <a href="#"><i class="fa-solid fa-shuffle fa-xs"></i> Random</a>
                             </li>
                              <li class="link">
-                                <i class="fa-solid fa-people-group fa-2xs"></i>
-                                Community
+                                <a href="#"><i class="fa-solid fa-people-group fa-xs"></i> Community</a>
                             </li>
                             {% if request.user.is_authenticated %}
                                 <li class="link">
-                                    <i class="fa-solid fa-id-badge fa-2xs"></i>
-                                    Profile
+                                    <a href="{% url 'personal_profile' %}"><i class="fa-regular fa-address-card fa-xs"></i> Profile</a>
                                 </li>
                             {% else %}
                                 <li class="link">
-                                    <i class="fa-solid fa-right-to-bracket fa-2xs"></i>
-                                    Login/Register
+                                    <a href="{% url 'signup' %}"><i class="fa-solid fa-right-to-bracket fa-xs"></i> Login/Register</a>
                                 </li>
                             {% endif %}
                         </ul>
@@ -63,36 +56,29 @@
                                 <i class="fa-solid fa-xmark fa-2xl"></i>
                             </button>
                             <ul class="menu block">
-                                <li class="link link-p-small">
-                                    <i class="fa-solid fa-house fa-2xs"></i>
-                                    Home
+                                <li class="link-small">
+                                    <a href="{% url 'index' %}"><i class="fa-solid fa-house fa-2xs"></i> Home</a>
                                 </li>
-                                 <li class="link link-p-small">
-                                    <i class="fa-solid fa-list fa-2xs"></i>
-                                    Anime
+                                 <li class="link-small">
+                                    <a href="#"><i class="fa-solid fa-list fa-2xs"></i> Anime</a>
                                 </li>
-                                 <li class="link link-p-small">
-                                    <i class="fa-solid fa-chart-simple fa-2xs"></i>
-                                    Top-100
+                                 <li class="link-small">
+                                    <a href="#"><i class="fa-solid fa-chart-simple fa-2xs"></i> Top-100</a>
                                 </li>
-                                 <li class="link link-p-small">
-                                    <i class="fa-solid fa-shuffle fa-2xs"></i>
-                                    Random
+                                 <li class="link-small">
+                                    <a href="#"><i class="fa-solid fa-shuffle fa-2xs"></i> Random</a>
                                 </li>
-                                 <li class="link link-p-small">
-                                    <i class="fa-solid fa-people-group fa-2xs"></i>
-                                    Community
+                                 <li class="link-small">
+                                    <a href="#"><i class="fa-solid fa-people-group fa-2xs"></i> Community</a>
                                 </li>
                                 <hr>
                                 {% if request.user.is_authenticated %}
-                                    <li class="link link-p-small">
-                                        <i class="fa-solid fa-id-badge fa-2xs"></i>
-                                        Profile
+                                    <li class="link-small">
+                                        <a href="{% url 'personal_profile' %}"><i class="fa-solid fa-id-badge fa-2xs"></i> Profile</a>
                                     </li>
                                 {% else %}
-                                    <li class="link link-p-small">
-                                        <i class="fa-solid fa-right-to-bracket fa-2xs"></i>
-                                        Login/Register
+                                    <li class="link-small">
+                                        <a href="{% url 'signup' %}"><i class="fa-solid fa-right-to-bracket fa-2xs"></i> Login/Register</a>
                                     </li>
                                 {% endif %}
                             </ul>
@@ -140,7 +126,10 @@
                         <h3>Technical support</h3>
                         <ul class="footer-menu">
                             <li class="footer-link"><a href="">Chat with support</a></li>
-                            <li class="footer-link">Mail for support: <a href="" style="color: var(--light-red)">mail@mail.com</a></li>
+                            <li class="footer-link">
+                                Mail for support:
+                                <a href="mailto:mail@mail.com" style="color: var(--light-red)">mail@mail.com</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
