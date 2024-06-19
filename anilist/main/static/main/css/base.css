@@ -9,6 +9,7 @@
     --muted: #6C757D;
     --light-red: #FF6666;
     --light-green: #3CCE7B;
+    --green: #2ea161;
 }
 
 html,
@@ -23,6 +24,7 @@ body {
     font-variation-settings: "wdth" 100;
     background: var(--dark);
     color: var(--light);
+    scroll-behavior: smooth;
 }
 
 a {
@@ -32,6 +34,36 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.success-btn,
+.danger-btn {
+    background: none;
+    border-radius: 5px;
+	padding: 10px 15px;
+	cursor: pointer;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.success-btn {
+	color: var(--light-green);
+    border: 1px solid var(--light-green);
+}
+
+.success-btn:hover {
+    background: var(--light-green);
+    color: white;
+}
+
+.danger-btn {
+	color: var(--light-red);
+    border: 1px solid var(--light-red);
+}
+
+.danger-btn:hover {
+    background: var(--light-red);
+    color: white;
 }
 
 .wrapper {

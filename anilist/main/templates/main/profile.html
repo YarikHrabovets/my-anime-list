@@ -2,9 +2,108 @@
 {% load static %}
 
 {% block title %}
+    Profile of {{ profile.user.username }}
+{% endblock %}
 
+{% block links %}
+    <link rel="stylesheet" href="{% static 'main/css/profile.css' %}">
 {% endblock %}
 
 {% block content %}
-
+    <div class="grid-container">
+        <div class="profile">
+            {% if profile.bg_pic %}
+                <img class="profile-bg" src="{{ profile.bg_pic.url }}" alt="Background image">
+            {% else %}
+                <img class="profile-bg" src="{% static 'main/imgs/banner_1.jpg' %}" alt="Background image">
+            {% endif %}
+            <div class="profile-main">
+                <div class="profile-avatar">
+                    {% if profile.profile_pic %}
+                        <img class="avatar-img" src="{{ profile.profile_pic.url }}" alt="Avatar">
+                    {% else %}
+                        <img class="avatar-img" src="{% static 'main/imgs/default-profile.jpg' %}" alt="Avatar">
+                    {% endif %}
+                    {% if request.user.is_authenticated and request.user.pk != profile.user.pk %}
+                        <button class="success-btn add-to-friend">
+                            <i class="fa-solid fa-user-plus"></i>
+                            Add to the friend
+                        </button>
+                    {% endif %}
+                </div>
+                <div class="info">
+                    <div>
+                        <p><strong>Email:</strong> {{ profile.user.email }}</p>
+                        <p><strong>Username:</strong> {{ profile.user.username }}</p>
+                    </div>
+                    <div>
+                        <p><strong>Country:</strong>
+                            {% if profile.country %}
+                                {{ profile.country.name }} <img src="{{ profile.country.flag }}" alt="[{{ profile.country.name }}]"/>
+                            {% else %}
+                                Not selected
+                            {% endif %}
+                        </p>
+                        <p><strong>Gender:</strong> {{ profile.gender }}</p>
+                    </div>
+                    <div>
+                        <p><strong>On site since:</strong> {{ profile.user.date_joined|date:'M d, Y' }}</p>
+                        <p><strong>Bio:</strong> {{ profile.bio }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            {% if request.user.pk == profile.user.pk %}
+                <div class="profile-menu">
+                    <div class="heading">
+                        <h4>Menu</h4>
+                    </div>
+                    <ul class="options">
+                        <li class="option">
+                            <a href="#">
+                                <i class="fa-solid fa-comments"></i> Messages
+                            </a>
+                        </li>
+                        <li class="option">
+                            <a href="#">
+                                <i class="fa-solid fa-list"></i> Anime list
+                            </a>
+                        </li>
+                        <li class="option">
+                            <a href="#">
+                                <i class="fa-solid fa-gears"></i> Settings
+                            </a>
+                        </li>
+                        <li class="option">
+                            <a href="{% url 'logout' %}">
+                                <i class="fa-solid fa-right-from-bracket"></i> Log out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
+            <div class="friends">
+                <div class="heading">
+                    <h4>Friends ({{ profile.friends.count }})</h4>
+                </div>
+                {% if profile.friends.all %}
+                    <ul class="options">
+                        {% for friend in profile.friends.all %}
+                            <li class="option">
+                                {% if profile.profile_pic %}
+                                    <img class="friend-avatar-img" src="{{ friend.profile_pic.url }}" alt="Friend avatar">
+                                {% else %}
+                                    <img class="friend-avatar-img" src="{% static 'main/imgs/default-profile.jpg' %}" alt="Friend avatar">
+                                {% endif %}
+                                <a class="friend-link" href="{{ friend.get_absolute_url }}">{{ friend.user.username }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <h5>{% if request.user.pk == profile.user.pk %}You don't{% else %}{{ profile.user.username }} doesn't{% endif %} have any friends</h5>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

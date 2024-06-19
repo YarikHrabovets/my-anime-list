@@ -37,7 +37,7 @@ class AuthoriseUserView(LoginView):
 
 
 class PersonalProfileView(LoginRequiredMixin, DetailView):
-    template_name = 'main/my_profile.html'
+    template_name = 'main/profile.html'
     context_object_name = 'profile'
 
     def get_object(self, queryset=None):
@@ -46,7 +46,8 @@ class PersonalProfileView(LoginRequiredMixin, DetailView):
 
 
 class ProfileView(DetailView):
-    pass
+    model = Profile
+    template_name = 'main/profile.html'
 
 
 def logout_user(request):

@@ -70,4 +70,4 @@ class Profile(models.Model):
             img.close()
 
     def get_absolute_url(self):
-        return reverse('profile', kwargs={'profile_slug': self.slug})
+        return reverse('profile', kwargs={'slug': self.slug})
